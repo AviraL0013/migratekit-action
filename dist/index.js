@@ -116,6 +116,9 @@ const github = __importStar(__nccwpck_require__(3228));
 async function createPullRequest(token, branchName, title, body) {
     const octokit = github.getOctokit(token);
     const { owner, repo } = github.context.repo;
+    // ✅ REQUIRED: set git identity for CI
+    (0, child_process_1.execSync)(`git config user.name "migratekit-bot"`);
+    (0, child_process_1.execSync)(`git config user.email "bot@migratekit.dev"`);
     (0, child_process_1.execSync)(`git checkout -b ${branchName}`);
     (0, child_process_1.execSync)(`git add .`);
     (0, child_process_1.execSync)(`git commit -m "${title}"`);
@@ -126,7 +129,7 @@ async function createPullRequest(token, branchName, title, body) {
         title,
         head: branchName,
         base: "main",
-        body
+        body,
     });
     console.log(`🔁 Pull Request created: ${title}`);
 }
