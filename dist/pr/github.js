@@ -45,7 +45,7 @@ async function createPullRequest(token, branchName, title, body) {
     (0, child_process_1.execSync)(`git checkout -b ${branchName}`);
     (0, child_process_1.execSync)(`git add .`);
     (0, child_process_1.execSync)(`git commit -m "${title}"`);
-    (0, child_process_1.execSync)(`git push origin ${branchName}`);
+    (0, child_process_1.execSync)(`git push origin ${branchName} --force`);
     await octokit.rest.pulls.create({
         owner,
         repo,
