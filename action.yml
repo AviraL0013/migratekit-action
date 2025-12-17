@@ -1,0 +1,12 @@
+name: MigrateKit
+description: Detect deprecated API usage and generate migration PRs
+inputs:
+  migration:
+    description: "Migration type (stripe-charges)"
+    required: true
+  github_token:
+    description: "GitHub token"
+    required: true 
+runs:
+  using: "node18"
+  main: "dist/index.js"
