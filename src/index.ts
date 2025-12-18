@@ -4,6 +4,7 @@ async function main() {
   console.log("🚀 MigrateKit action started");
 
   const migrationType = process.env.INPUT_MIGRATION;
+  const dryRun = process.env.INPUT_DRY_RUN === "true";
 
   if (!migrationType) {
     throw new Error("Missing input: migration");
@@ -11,7 +12,8 @@ async function main() {
 
   await runAgent({
     migrationType,
-    repoPath: process.cwd()
+    repoPath: process.cwd(),
+    dryRun
   });
 }
 
